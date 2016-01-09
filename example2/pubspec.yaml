@@ -1,0 +1,5 @@
+name: dart_example2
+version: 0.0.1
+description: A simple console application.
+dependencies:
+  #dart.io: '>=1.0.0'
