@@ -3,6 +3,7 @@
 
 import 'dart:html';
 import 'dart:math';
+//import 'package:simplot/simplot.dart';
 
 CanvasElement canvas;
 CanvasRenderingContext2D context;
@@ -11,8 +12,6 @@ double lineFract = 0.99;
 double thetaDiff = 91.0;
 
 String lastValue = "None";
-
-
 
 void valueChanged(Event e) {
   redraw();
