@@ -17,12 +17,12 @@ class Twenty {
   }
 
   void redraw() {
-    context.clearRect(0,0,width,height);
+    context.clearRect(0,0,200,200);
     context.beginPath();
     context.moveTo(20,20);
     context.lineTo(20,20);
     context.closePath();
-  };
+  }
   
 }
 
