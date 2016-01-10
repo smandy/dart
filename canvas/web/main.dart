@@ -7,7 +7,7 @@ import 'dart:math';
 
 CanvasElement canvas;
 CanvasRenderingContext2D context;
-
+dynamic values;
 double lineFract = 0.99;
 double thetaDiff = 91.0;
 
@@ -23,6 +23,8 @@ void main() {
 
   querySelector("#theta").onInput.listen( (Event e) => setTheta( getDoubleFromEvent(e)) ); //double.parse(e.target.)) );
   querySelector("#lineFract").onInput.listen( (Event e) => setLineFract( getDoubleFromEvent(e))); //double.parse(e.target.value) );
+
+  values = querySelector("#values");
 
   redraw();
 }
@@ -41,6 +43,20 @@ void setTheta( double x ) {
 void setLineFract(double x ) {
   lineFract = x;
   redraw();
+}
+
+String makeTable( Iterable<Iterable<String>> rows) {
+  makeCellsIntoBuffer( Iterable<String> xs, StringBuffer sink) =>
+      xs.forEach( (x) => sink.write("<TD>$x</TD>"));
+  StringBuffer ret = new StringBuffer();
+  ret.write("<TABLE>\n");
+  for( Iterable<String> row in rows) {
+    ret.write("<TR>");
+    makeCellsIntoBuffer( row, ret);
+    ret.write("</TR>\n");
+  }
+  ret.write("</TABLE>");
+  return ret.toString();
 }
 
 redraw() {
@@ -69,12 +85,10 @@ redraw() {
       theta += (2 * PI / 360.0) * thetaDiff;
       length *= lineFract;
     }
-
-    context.font = "30pt Consalas";
-    context.fillStyle = "blue";
-    context.fillText("theta = $thetaDiff\nlineFract=$lineFract\n", 30,30);
-    context.fillText("lastValue=$lastValue", 30,50);
-
+    values.innerHtml = makeTable(
+        [["theta"   , thetaDiff.toString()],
+        ["lineFract", lineFract.toString()],
+        ["lastValue", lastValue.toString() ] ] );
     context.stroke();
     context.closePath();
 }

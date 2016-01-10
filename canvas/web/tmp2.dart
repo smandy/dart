@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 abstract class Foo {
   void doit();
 
@@ -45,9 +47,30 @@ foo2( int x , { int y : 30, int z : 42}) {
   print( "foo2 $x $y $z");
 }
 
-main() {
-  List<Foo> myFoos = [ new FooImpl(), new Impl2() ];
+String makeTable( Iterable<Iterable<String>> rows) {
+  makeCellsIntoBuffer( Iterable<String> xs, StringBuffer sink) =>
+      xs.forEach( (x) => sink.write("<TD>$x</TD>"));
 
+  StringBuffer ret = new StringBuffer();
+
+  ret.write("<TABLE>\n");
+  for( Iterable<String> row in rows) {
+    ret.write("<TR>");
+    makeCellsIntoBuffer( row, ret);
+    ret.write("</TR>\n");
+  }
+  ret.write("</TABLE>");
+  return ret.toString();
+}
+
+main() {
+  print( makeTable( [
+    [ "foo", "bar", "bar"],
+    ["sue", "grew", "stew"]]));
+}
+
+other() {
+  List<Foo> myFoos = [ new FooImpl(), new Impl2() ];
   List<BattyBoy> myFoos2 = [ new FooImpl(), new Impl2() ];
 
   myFoos.forEach( (x) => x.doit());
