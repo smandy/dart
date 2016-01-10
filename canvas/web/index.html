@@ -6,44 +6,30 @@
 -->
 
 <html>
-    <style>
-   .menu {
-      float:left;
-      width:20%;
-      height:80%;
-    }
-    .mainContent {
-      float:left;
-      width:75%;
-      height:80%;
-    }
-  </style>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="scaffolded-by" content="https://github.com/google/stagehand">
-    <title>dart_example</title>
+    <title>canvas</title>
     <link rel="stylesheet" href="styles.css">
     <script async src="main.dart" type="application/dart"></script>
     <script async src="packages/browser/dart.js"></script>
-
-    
 </head>
 
 <body>
-  <H3> DIV 1 GOES HERE</H3>
+
   <div id="output"></div>
+  <input type="range" id="theta"     min="90" value="91" max="100" step="0.25">
+  <input type="range" id="lineFract" min="0.990" value="0.990" max="0.999" step="0.001">
 
-  <H3> DIV 2 GOES HERE</H3>
-  <div id="output2"></div>
+  <section>
+  <canvas id="canvas"
+          width="600" height="600">
+      Canvas is not supported in your browser.
+  </canvas>
+  </section>
 
-  <div id="menu">
-    <iframe class="menu" src="menu.html"></iframe>
-  </div>
-  <div id="content">
-    <iframe class="mainContent" src="events.html"></iframe>
-  </div>
+
 </body>
 </html>

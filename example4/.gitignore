@@ -20,8 +20,3 @@ doc/api/
 *.iml
 *.ipr
 *.iws
-*~
-/pubspec.lock
-*.lock
-/example1/web/#main.dart#
-/example1/web/.#main.dart
