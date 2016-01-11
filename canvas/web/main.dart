@@ -46,13 +46,11 @@ void setLineFract(double x ) {
 }
 
 String makeTable( Iterable<Iterable<String>> rows) {
-  makeCellsIntoBuffer( Iterable<String> xs, StringBuffer sink) =>
-      xs.forEach( (x) => sink.write("<TD>$x</TD>"));
   StringBuffer ret = new StringBuffer();
   ret.write("<TABLE>\n");
   for( Iterable<String> row in rows) {
     ret.write("<TR>");
-    makeCellsIntoBuffer( row, ret);
+    row.forEach( (x) => ret.write("<TD>$x</TD>"));
     ret.write("</TR>\n");
   }
   ret.write("</TABLE>");
@@ -62,24 +60,20 @@ String makeTable( Iterable<Iterable<String>> rows) {
 redraw() {
     int width  = canvas.width;
     int height = canvas.height;
-    int length = width;
+    
+    int length = (width / 2.0).toInt();
     double theta = 0.0;
-
-    double oldX = 0.0, oldY = 0.0;
-    bool firstRun = true;
-    context.lineWidth = 1;
+    double oldX = 50.0, oldY = 50.0;
+    context.lineWidth = 0.5;
     context.clearRect(0,0,width,height);
     context.beginPath();
+
+    context.moveTo(oldX, oldY);
 
     while (length > 10) {
       double newX = oldX + length * cos(theta);
       double newY = oldY + length * sin(theta);
-      if (firstRun) {
-        context.moveTo( newX, newY);
-        firstRun = false;
-      } else {
-        context.lineTo( newX, newY);
-      }
+      context.lineTo( newX, newY);
       oldX = newX;
       oldY = newY;
       theta += (2 * PI / 360.0) * thetaDiff;

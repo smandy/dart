@@ -23,13 +23,9 @@ class Twenty {
     context.lineTo(20,20);
     context.closePath();
   }
-  
 }
 
-
-
 void main() {
-
   new Twenty();
   //querySelector('#output').text = 'Your Dart app is running.';
 }

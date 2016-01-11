@@ -1,11 +1,6 @@
-
 import 'package:quiver/core.dart';
 
-class Grid {
-}
-
 List<int> nums = new List.generate(4, (x) => x);
-
 
 Map<String,List<List<Point>>> moves = makeMoves();
 
@@ -26,7 +21,7 @@ List<Point> makeAllPoints() {
 
 List<Point> allPoints = makeAllPoints();
 
-void dump( Map<Point,int> m) {
+void dump( Map<Point,int> m ) {
   StringBuffer tmp = new StringBuffer();
   for (int i = 0;i<16;++i) {
     if (i % 4 == 0) {
@@ -145,6 +140,15 @@ class Point {
   int get hashCode => hash2(x.hashCode, x.hashCode);
 }
 
+class PointPair {
+  Point _first;
+  Point _second;
+
+  PointPair( Point first, Point second) {
+    _first = first;
+    _second = second;
+  };
+};
 
 test( List<int> xs) {
   var ret = move(xs);
@@ -178,7 +182,6 @@ main() {
   myMap[ new Point(0,0)] = 2;
   myMap[ new Point(1,0)] = 1;
   myMap[ new Point(2,0)] = 1;
-
 
   myMap[ new Point(2,1)] = 1;
   myMap[ new Point(3,2)] = 2;

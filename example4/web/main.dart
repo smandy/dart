@@ -5,8 +5,8 @@ import 'dart:convert';
 class Handler {
   WebSocket socket;
   Map<String,Function>
-
-  onTextMessage( dynamic js) {
+    
+    onTextMessage( dynamic js ) {
     print('Received a $js');
     var xs = querySelector("#menu").text = js;
     //var ys = querySelector("#menu").getElementsByClassName()
@@ -17,7 +17,7 @@ class Handler {
     List<String> peers = js["peers"];
     List<String> clients = js["clients"];
     var time = js["time"];
-    var qs = querySelector("#content");
+    var qs   = querySelector("#content");
     //var names = clients.map( (c) => c.name );
     qs.text = "Have ${time} ${clients.length} clients ${clients} and ${peers.length} peers ${peers}";
   }
